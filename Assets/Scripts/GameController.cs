@@ -18,11 +18,14 @@ public class GameController : MonoBehaviour
     public Hand playersHand = new Hand();
     public Hand enemysHand = new Hand();
 
+    public GameObject cardPefab = null;
+    public Canvas canvas = null;
     private void Awake()
     {
         instance = this;
         playerDeck.Create();
         enemyDeck.Create();
+        StartCoroutine(DealHands());
     }
 
     public void Quit()
@@ -34,5 +37,16 @@ public class GameController : MonoBehaviour
     public void SkipTurn()
     {
         Debug.Log("skip turn");
+    }
+
+    internal IEnumerator DealHands()
+    {
+        yield return new WaitForSeconds(1);
+        for (int i = 0; i < 3; i++)
+        {
+            playerDeck.DealCard(playersHand);
+            enemyDeck.DealCard(enemysHand);
+            yield return new WaitForSeconds(1);
+        }
     }
 }
