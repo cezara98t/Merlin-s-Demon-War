@@ -216,6 +216,17 @@ MonoBehaviour:
     type: 3}
   canvas: {fileID: 1762337254}
   isPlayable: 0
+  player: {fileID: 352840780}
+  enemy: {fileID: 789229295}
+  effectLeftPrefab: {fileID: 5913398935411930823, guid: 3b69c06627a10ce43b63085c8cf90682,
+    type: 3}
+  effectRightPrefab: {fileID: 7205511840420698215, guid: e4960def99aa6e94183f9cedd13459b2,
+    type: 3}
+  fireball: {fileID: 21300000, guid: 8d9d1a7ebdb62994eb28389131fb025c, type: 3}
+  iceball: {fileID: 21300000, guid: 2229ccb519809dd4191670f64f14394d, type: 3}
+  multiFireball: {fileID: 21300000, guid: 9cea991da3c4b78459e25890d3ec3175, type: 3}
+  multiIceball: {fileID: 21300000, guid: a2dcdefc0556be245aee13a9fd59e4a4, type: 3}
+  fireAndIce: {fileID: 21300000, guid: 9dc30d746ceb19743bc62a2408e47970, type: 3}
 --- !u!4 &15727880
 Transform:
   m_ObjectHideFlags: 0

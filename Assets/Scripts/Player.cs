@@ -38,5 +38,14 @@ public class Player : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         if (!GameController.instance.isPlayable) return;
+        GameObject obj = eventData.pointerDrag;
+        if (obj)
+        {
+            Card card = obj.GetComponent<Card>();
+            if (card)
+            {
+                GameController.instance.UseCard(card, this, GameController.instance.playersHand);
+            }
+        }
     }
 }

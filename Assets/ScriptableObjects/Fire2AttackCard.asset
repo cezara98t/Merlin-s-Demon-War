@@ -22,4 +22,4 @@ MonoBehaviour:
   numberInDeck: 4
   isDefenceCard: 0
   isMirrorCard: 0
-  isMulti: 0
+  isMulti: 1

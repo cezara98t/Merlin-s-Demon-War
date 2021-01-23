@@ -28,8 +28,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             {
                 card.burnImage.gameObject.SetActive(false);
             }
-        }
-        
+        }        
     }
 
     public void OnEndDrag(PointerEventData eventData)
