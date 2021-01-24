@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,13 +11,13 @@ public class Hand
     public string[] animations = new string[3];
     public bool isPlayers;
 
-    public void BurnCard(Card card)
+    public void RemoveCard(Card card)
     {
         for(int i = 0; i < 3; i++)
         {
             if (cards[i] == card)
             {
-                Object.Destroy(cards[i].gameObject);
+                UnityEngine.Object.Destroy(cards[i].gameObject);
                 cards[i] = null;
                 if (isPlayers)
                 {

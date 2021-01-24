@@ -72,6 +72,9 @@ public class GameController : MonoBehaviour
         if (!IsCardValid(card, playerOn, hand)) return false;
         isPlayable = false;
         CastCard(card, playerOn, hand);
+        player.glowImage.gameObject.SetActive(false);
+        enemy.glowImage.gameObject.SetActive(false);
+        hand.RemoveCard(card);
         return false;
     }
 
@@ -106,19 +109,30 @@ public class GameController : MonoBehaviour
     {
         if (card.cardData.isMirrorCard)
         {
+            playerOn.SetMirror(true);
+            isPlayable = true;
         }
         else
         {
-            if (card.cardData.isDefenceCard)
+            if (card.cardData.isDefenceCard) // health card
             {
-
+                playerOn.health += card.cardData.damage;
+                if (playerOn.health > playerOn.maxHealth)
+                    playerOn.health = playerOn.maxHealth;
+                UpdateHealth();
+                StartCoroutine(CastHealEffect(player));
             }
             else // attack
             {
-
                 CastAttackEffect(card, playerOn);
             }
         }
+    }
+
+    private IEnumerator CastHealEffect(Player playerOn)
+    {
+        yield return new WaitForSeconds(0.5f);
+        isPlayable = true;
     }
 
     internal void CastAttackEffect(Card card, Player playerOn)
@@ -151,6 +165,21 @@ public class GameController : MonoBehaviour
                     effect.effectImage.sprite = fireAndIce;
                     break;
             }
+        }
+    }
+
+    internal void UpdateHealth()
+    {
+        player.UpdateHealth();
+        enemy.UpdateHealth();
+
+        if(player.health <= 0)
+        {
+            //TODO gameover
+        }
+        if(enemy.health <= 0)
+        {
+            //TODO new enemy
         }
     }
 }
