@@ -22,11 +22,17 @@ public class Player : MonoBehaviour, IDropHandler
 
     private Animator animator = null;
 
+    public AudioSource dealAudio = null;
+    public AudioSource healAudio = null;
+    public AudioSource mirrorAudio = null;
+    public AudioSource smashAudio = null;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         UpdateHealth();
+        UpdateMana();
     }
 
     internal void PlayHitAnim()
@@ -59,7 +65,7 @@ public class Player : MonoBehaviour, IDropHandler
         }
         else
         {
-            Debug.LogError("Health is not a valid value, " + health);
+            Debug.Log("Health is not a valid value, " + health);
         }
     }
 
@@ -71,5 +77,36 @@ public class Player : MonoBehaviour, IDropHandler
     internal bool HasMirror()
     {
         return mirrorImage.gameObject.activeInHierarchy;
+    }
+
+    internal void UpdateMana()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            if (mana > i)
+                manaBalls[i].SetActive(true);
+            else
+                manaBalls[i].SetActive(false);
+        }
+    }
+
+    internal void PlayMirrorSound()
+    {
+        mirrorAudio.Play();
+    }
+
+    internal void PlaySmashSound()
+    {
+        smashAudio.Play();
+    }
+
+    internal void PlayHealSound()
+    {
+        healAudio.Play();
+    }
+
+    internal void PlayDealSound()
+    {
+        dealAudio.Play();
     }
 }
